@@ -1,0 +1,147 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Airline Passenger Satisfaction</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Passenger Satisfaction Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-control" name="gender" placeholder="Enter you Gender" required>
+                <option class="placeholder" selected disabled value="">Select your Gender</option>
+                <option value="male">
+                    Male
+                </option>
+                <option value="female">
+                    Female
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input class="form-control" type="number" name="age"
+                placeholder="Enter your Age" min='7' max='85' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Type_of_travel</label>
+            <select class="form-control" name="type of travel"
+                placeholder="Enter type of travel" required>
+                <option class="placeholder" selected disabled value="">select the Type_of_travel</option>
+                <option value="Business travel">
+                    Business travel
+                </option>
+                <option value="Personal Travel">
+                    Personal Travel
+                </option>
+                
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Class</label>
+            <select class="form-control" name="class type" placeholder="Enter your class" required>
+                <option class="placeholder" selected disabled value="">Select your class Type</option>
+                <option value="Business">
+                    Business
+                </option>
+                <option value="Eco">
+                    Eco
+                </option>
+                <option value="Eco Plus">
+                    Eco Plus
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Flight Distance</label>
+        <input class="form-control" type="number" name="Flig distance"
+            placeholder="Enter your flight distance" min='31' max='4983' />
+    </div>
+</div>
+<div class="mb-3">
+    <label class="form-label">Inflight_wifi_service</label>
+    <input class="form-control" type="number" name="wifi service"
+        placeholder="Enter your flight services" min='0' max='5' />
+</div>
+
+</div>
+<div class="mb-3">
+    <label class="form-label">Ease_of_Online_booking</label>
+    <input class="form-control" type="number" name="Online booking"
+        placeholder="Enter your Online Booking" min='0' max='5' />
+</div>
+</div>
+<div class="mb-3">
+    <label class="form-label">Food_and_drink</label>
+    <input class="form-control" type="number" name="food supply"
+        placeholder="Enter your food menu" min='0' max='5' />
+</div>
+</div>
+<div class="mb-3">
+    <label class="form-label">Online_boarding</label>
+    <input class="form-control" type="number" name="boarding"
+        placeholder="Enter your online boarding" min='0' max='5' />
+</div>
+</div>
+<div class="mb-3">
+    <label class="form-label">Seat_comfort</label>
+    <input class="form-control" type="number" name="comfy seats"
+        placeholder="Enter your flight comfy seat" min='0' max='5' />
+</div>
+</div>
+<div class="mb-3">
+    <label class="form-label">Inflight_entertainment</label>
+    <input class="form-control" type="number" name="Entertainment"
+        placeholder="Enter your flight entertainment" min='0' max='5' />
+</div>
+</div>
+<div class="mb-3">
+    <label class="form-label"></label>On_board_service
+    <input class="form-control" type="number" name="On board service"
+        placeholder="Enter your flight on board service" min='0' max='5' />
+</div>
+</div>
+<div class="mb-3">
+    <label class="form-label">Leg_rooms_service</label>
+    <input class="form-control" type="number" name="leg room service"
+        placeholder="Enter your flight leg room service" min='0' max='5' />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Baggage_handling</label>
+    <input class="form-control" type="number" name="handling of baggage"
+        placeholder="Enter your flight handling of baggage" min='0' max='5' />
+</div>
+<div class="mb-3">
+    <label class="form-label">Checkin_service</label>
+    <input class="form-control" type="number" name="checkin service"
+        placeholder="Enter your flight checkin service" min='0' max='5' />
+</div>
+<div class="mb-3">
+    <label class="form-label">Inflight_service</label>
+    <input class="form-control" type="number" name="inflight service"
+        placeholder="Enter your inflight service " min='0' max='5' />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Cleanliness</label>
+    <input class="form-control" type="number" name="cleanliness"
+        placeholder="Enter your flight tidyness" min='0' max='5' />
+</div>
+
+
+
+
+       
+        
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />
+        </div>
+    </form>
+    <h2>
+       THE  prediction is {{result}}
+    </h2>
+   <body>
+</html>

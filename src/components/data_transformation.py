@@ -53,6 +53,8 @@ class DataTransformation:
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
 
+
+            # Getting preprocessing object
             preprocessor=ColumnTransformer(
                 [
                 ("num_pipeline",num_pipeline,numerical_columns),
@@ -72,6 +74,7 @@ class DataTransformation:
     def initiate_data_transformation(self,train_path,test_path):
 
         try:
+            # Read the train and test data
             train_df=pd.read_csv(train_path)
             test_df=pd.read_csv(test_path)
 
@@ -82,21 +85,24 @@ class DataTransformation:
             preprocessing_obj=self.get_data_transformer_object()
 
             target_column_name="satisfaction"
-            numerical_columns = ["'Age', 'Flight Distance', 'Inflight wifi service', 'Departure/Arrival time convenient', 'Ease of Online booking', 'Gate location', 'Food and drink', 'Online boarding', 'Seat comfort', 'Inflight entertainment', 'On-board service', 'Leg room service', 'Baggage handling', 'Checkin service', 'Inflight service', 'Cleanliness', 'Departure Delay in Minutes', 'Arrival Delay in Minutes'"]
+            drop_column= [target_column_name]
 
+            # splitting dependent and independent features
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df=train_df[target_column_name]
 
             input_feature_test_df=test_df.drop(columns=[target_column_name],axis=1)
             target_feature_test_df=test_df[target_column_name]
 
-            logging.info(
-                f"Applying preprocessing object on training dataframe and testing dataframe."
-            )
 
+            # Splitting dependent and independent features
             input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
 
+            logging.info(f"Applying preprocessing object on training dataframe and testing dataframe.")
+
+
+            # Converting into array to process faster
             train_arr = np.c_[
                 input_feature_train_arr, np.array(target_feature_train_df)
             ]
@@ -104,6 +110,9 @@ class DataTransformation:
 
             logging.info(f"Saved preprocessing object.")
 
+
+
+            # Calling Saving object and preprocessing object
             save_object(
 
                 file_path=self.data_transformation_config.preprocessor_obj_file_path,
