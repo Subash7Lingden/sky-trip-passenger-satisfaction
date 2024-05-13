@@ -9,15 +9,16 @@ from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 
 from src.components.data_transformation import DataTransformation
+
 from src.components.model_trainer import ModelTrainer
 
 
 ## initalising Data Ingestion
 @dataclass
 class DataIngestionConfig:
-    train_data_path:str = os.path.join("artifacts","train.csv")
-    test_data_path:str = os.path.join("artifacts","test.csv")
-    raw_data_path:str = os.path.join("artifacts","raw.csv")
+    train_data_path:str = os.path.join("artifcats","train.csv")
+    test_data_path:str = os.path.join("artifcats","test.csv")
+    raw_data_path:str = os.path.join("artifcats","raw.csv")
 
 
 class DataIngestion:
@@ -29,15 +30,15 @@ class DataIngestion:
     def initated_data_ingestion(self):
         logging.info("Data Ingestion Method Started")
         try:
-            df = pd.read_csv(os.path.join("notebook/data/train.csv"))
+            data = pd.read_csv(os.path.join("notebook/data","Clean Airline Passenger Satisfaction.csv"))
             logging.info("Data Reading As Pandas Data Frame")
 
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)
-            df.to_csv(self.ingestion_config.raw_data_path,index=False)
+            data.to_csv(self.ingestion_config.raw_data_path,index=False)
 
             logging.info("Train Test Split")
-            train_set,test_set = train_test_split(df,test_size=0.20,random_state=42)
+            train_set,test_set = train_test_split(data,test_size=0.20,random_state=42)
 
             train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
             test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
@@ -59,6 +60,6 @@ if __name__=="__main__":
     obj = DataIngestion()
     train_data_path,test_data_path = obj.initated_data_ingestion()
     data_transformation = DataTransformation()
-    train_arr,test_arr,_ = data_transformation.initiate_data_transformation(train_data_path, test_data_path)
+    train_arr,test_arr,_ = data_transformation.inited_data_transformation(train_data_path, test_data_path)
     modeltrainer=ModelTrainer()
     print(modeltrainer.initiate_model_trainer(train_arr, test_arr))
