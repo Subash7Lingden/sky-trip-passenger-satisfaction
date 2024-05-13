@@ -1,3 +1,59 @@
+# import os
+# import sys
+# import pandas as pd 
+# import numpy as np 
+# import pickle
+# from src.logger import logging
+# from src.exception import CustomException
+# from sklearn.metrics import confusion_matrix,precision_score,recall_score,f1_score,accuracy_score,classification_report,ConfusionMatrixDisplay
+
+
+# ## Save Pikel File 
+# def save_object(file_path,obj):
+#     try:
+#         dir_path = os.path.dirname(file_path)
+
+#         os.makedirs(dir_path,exist_ok=True)
+
+#         with open(file_path,"wb") as file_obj:
+#             pickle.dump(obj, file_obj)
+
+#     except Exception as e:
+#         raise CustomException(e, sys)
+
+
+# def model_evalution(X_train,y_train,X_test,y_test,models):
+#     try:
+#         report = {}
+#         for i in range(len(models)):
+#             model = list(models.values())[i]
+#             # Train Models
+#             model.fit(X_train,y_train)
+#             # Predict test Data
+#             y_test_pred = model.predict(X_test)
+
+#             test_model_score = accuracy_score(y_test,y_test_pred)
+
+#             report[list(models.keys())[i]] = test_model_score
+
+#         return report
+
+#     except Exception as e:
+#         raise CustomException(e, sys)
+
+
+# ## Load Model Pikle File
+# def load_object(file_path):
+#     try:
+        
+#         with open(file_path,"rb") as file_obj:
+#            return  pickle.load( file_obj)
+
+#     except Exception as e:
+#         logging.info("Error Occured in Load Pickle File")
+#         raise CustomException(e, sys)
+    
+
 import os
 import sys
 import pandas as pd 
@@ -22,7 +78,7 @@ def save_object(file_path,obj):
         raise CustomException(e, sys)
 
 
-def model_evalution(X_train,y_train,X_test,y_test,models):
+def evaluate_models(X_train,y_train,X_test,y_test,models):
     try:
         report = {}
         for i in range(len(models)):
@@ -52,3 +108,4 @@ def load_object(file_path):
     except Exception as e:
         logging.info("Error Occured in Load Pickle File")
         raise CustomException(e, sys)
+

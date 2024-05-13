@@ -12,11 +12,11 @@ def predict_datapoint():
 
     else:
         data = CustomData(
-            Gender = (request.form.get("Gender"))
-            , Age = float(request.form.get("Age"))
+            Gender = int(request.form.get("Gender"))
+            , Age = int(request.form.get("Age"))
             , Type_of_Travel = (request.form.get("Type_of_Travel"))
             , Class = (request.form.get("Class"))
-            , Flight_Distance = float(request.form.get("Flight_Distance"))
+            , Flight_Distance = int(request.form.get("Flight_Distance"))
             , Inflight_wifi_service = int(request.form.get("Inflight_wifi_service"))
             , Ease_of_Online_booking = int(request.form.get("Ease_of_Online_booking"))
             , Food_and_drink = int(request.form.get("Food_and_drink"))
